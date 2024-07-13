@@ -24,11 +24,9 @@ public class SoundCloudClient
     private readonly HttpClient _http;
     private readonly SoundcloudEndpoint _endpoint;
 
-    private readonly string BaseUrl = "https://soundcloud.com";
-
     public string ClientId { get; set; }
 
-    public bool IsInitialized { get; private set; }
+    private readonly string BaseUrl = "https://soundcloud.com";
 
     /// <summary>
     /// Operations related to Soundcloud search.
@@ -69,18 +67,6 @@ public class SoundCloudClient
     /// <summary>
     /// Initializes an instance of <see cref="SoundCloudClient"/>.
     /// </summary>
-    public SoundCloudClient()
-        : this(Constants.ClientId, Http.Client) { }
-
-    /// <summary>
-    /// Initializes an instance of <see cref="SoundCloudClient"/>.
-    /// </summary>
-    public SoundCloudClient(HttpClient http)
-        : this(Constants.ClientId, http) { }
-
-    /// <summary>
-    /// Initializes an instance of <see cref="SoundCloudClient"/>.
-    /// </summary>
     public SoundCloudClient(string clientId)
         : this(clientId, Http.Client) { }
 
@@ -91,8 +77,6 @@ public class SoundCloudClient
     {
         ClientId = await GetClientIdAsync(cancellationToken);
         _endpoint.ClientId = ClientId;
-
-        IsInitialized = true;
     }
 
     /// <summary>
